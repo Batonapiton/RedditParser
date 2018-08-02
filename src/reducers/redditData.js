@@ -3,8 +3,7 @@ import {
   FETCH_POSTS_FAIL,
   FETCH_POSTS_SUCCESS,
   SAVE_SUBREDDIT,
-  SAVE_POSTS_TO_LOAD,
-  SAVE_POSTS_TO_SHOW
+  SAVE_POSTS_TO_LOAD
 } from "../actions/types";
 
 const initialState = {
@@ -45,11 +44,7 @@ export default function(state = initialState, action) {
         ...state,
         postsToLoad: action.payload
       };
-    case SAVE_POSTS_TO_SHOW:
-      return {
-        ...state,
-        postsToShow: action.payload
-      };
+
     default:
       return state;
   }

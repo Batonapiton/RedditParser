@@ -6,8 +6,8 @@ import {
   savePostToStorage,
   deletePostFromStorage
 } from "../actions/postsStorageActions";
-import { Spin, Card, Icon, Button } from "antd";
 import "./posts.css";
+import { Spin, Card, Button } from "antd";
 
 const { Meta } = Card;
 
@@ -47,7 +47,8 @@ class Posts extends Component {
         image: post.url.replace("gifv", "gif"),
         header: post.title,
         author: post.author,
-        extra: post.url
+        extra: post.url,
+        permalink: `https://reddit.com${post.permalink}`
       }));
       return (
         <div className="cards">
@@ -63,7 +64,7 @@ class Posts extends Component {
                       this.handleSavePost(item);
                     }}
                   >
-                    Добавить
+                    Add to queue
                   </Button>
                   <Button
                     type="danger"
@@ -71,7 +72,7 @@ class Posts extends Component {
                       this.handleDeletePost(item);
                     }}
                   >
-                    Удалить
+                    Remove from queue
                   </Button>
                 </div>
               ]}
@@ -79,7 +80,10 @@ class Posts extends Component {
             >
               <Meta
                 title={<a href={item.extra}>{item.header}</a>}
-                description={item.author}
+                description={[
+                  <a href={item.permalink}>Link to post</a>,
+                  <div>Author: {item.author}</div>
+                ]}
               />
             </Card>
           ))}
@@ -91,7 +95,13 @@ class Posts extends Component {
 
 Posts.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired
+  savePostToStorage: PropTypes.func.isRequired,
+  deletePostFromStorage: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
+  queryInfo: PropTypes.object,
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  storedPosts: PropTypes.array
 };
 
 const mapStateToProps = state => ({

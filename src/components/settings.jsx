@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-//import { Form, Sidebar, Segment,Menu } from "semantic-ui-react";
 import { Form, InputNumber, Input, Button } from "antd";
 import {
   saveSubreddit,
-  savePostsToLoad,
-  savePostsToShow
+  savePostsToLoad
+
 } from "../actions/redditActions";
 
 class Settings extends Component {
@@ -22,20 +21,18 @@ class Settings extends Component {
   handleSavePostsToLoad = value => {
     this.setState({ postsToLoad: value });
   };
-  handleSavePostsToShow = value => {
-    this.setState({ postsToShow: value });
-  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.saveSubreddit(this.state.subreddit); //TODO сделать проверку на предыдущие значения
     this.props.savePostsToLoad(this.state.postsToLoad);
-    this.props.savePostsToShow(this.state.postsToShow);
   };
 
   render() {
     return (
       //TODO Сделать проверки на значения и запретить нажатие в случае ввода неверных значений
       <Form layout="inline" onSubmit={this.handleSubmit}>
+
         <Form.Item label="Subreddit">
           <Input
             name="subreddit"
@@ -55,16 +52,6 @@ class Settings extends Component {
             value={this.state.postsToLoad}
           />
         </Form.Item>
-        <Form.Item label="Posts to show">
-          <InputNumber
-            name="postsToShow"
-            min={1}
-            max={100}
-            placeholder="Posts to show"
-            onChange={this.handleSavePostsToShow}
-            value={this.state.postsToShow}
-          />
-        </Form.Item>
 
         <Form.Item>
           <Button type="primary" htmlType="submit" onClick={this.handleSubmit}>
@@ -76,22 +63,22 @@ class Settings extends Component {
   }
 }
 
-Settings.propTypes = {};
+Settings.propTypes = {
+  subreddit: PropTypes.string,
+  postsToLoad: PropTypes.number,
+  postsToShow:  PropTypes.number,
+  saveSubreddit: PropTypes.func,
+  savePostsToLoad: PropTypes.func,
+};
 const mapStateToProps = state => ({
   subreddit: state.redditData.selectedSubreddit,
-  postsToLoad: state.redditData.postsToLoad,
-  postsToShow: state.redditData.postsToShow
+  postsToLoad: state.redditData.postsToLoad
 });
 const mapDispatchToProps = {
   saveSubreddit,
-  savePostsToLoad,
-  savePostsToShow
+  savePostsToLoad
+
 };
-// mapDispatchToProps = dispatch => {
-//   return { saveSubreddit: (subreddit)=> dispatch(saveSubreddit(subreddit)),
-//     savePostsToLoad:(num)=> dispatch(savePostsToLoad(num)),
-//     savePostsToShow: (num)=> dispatch(savePostsToShow(num))};
-// };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

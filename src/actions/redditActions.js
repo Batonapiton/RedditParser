@@ -3,8 +3,7 @@ import {
   FETCH_POSTS_FAIL,
   FETCH_POSTS_SUCCESS,
   SAVE_SUBREDDIT,
-  SAVE_POSTS_TO_LOAD,
-  SAVE_POSTS_TO_SHOW
+  SAVE_POSTS_TO_LOAD
 } from "./types";
 
 export const fetchPosts = queryInfo => {
@@ -50,26 +49,4 @@ export const savePostsToLoad = num => {
     payload: num
   };
 };
-export const savePostsToShow = num => {
-  return {
-    type: SAVE_POSTS_TO_SHOW,
-    payload: num
-  };
-};
-// export const createPost = postData => dispatch => {
-//   console.log("post added");
-//   fetch("https://jsonplaceholder.typicode.com/posts", {
-//     method: "POST",
-//     headers: {
-//       "content-type": "application/json"
-//     },
-//     body: JSON.stringify(postData)
-//   })
-//     .then(res => res.json())
-//     .then(post =>
-//       dispatch({
-//         type: NEW_POST,
-//         payload: post
-//       })
-//     );
-// };
+

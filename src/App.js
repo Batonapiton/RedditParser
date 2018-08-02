@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import "./App.css";
 
 import Posts from "./components/posts";
+import Queue from "./components/queue";
 import Sidebar from "./components/sidebar";
 import Navbar from "./components/navbar";
 import Login from "./components/login";
@@ -22,7 +23,7 @@ class App extends Component {
               <Layout.Content>
                 <Route exact path="/" component={Login} />
                 <Route path="/posts" component={Posts} />
-                <Route path="/signup" component={Posts} />
+                <Route path="/postqueue" component={Queue} />
               </Layout.Content>
             </Layout>
             <Layout.Footer>Footer</Layout.Footer>
