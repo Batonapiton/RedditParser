@@ -6,19 +6,16 @@ import {
   SAVE_POSTS_TO_LOAD
 } from "./types";
 
-export const fetchPosts = queryInfo => {
-  return dispatch => {
-    dispatch(fetchPostsBegin());
-    const { subreddit, postsToLoad } = queryInfo;
-    return fetch(
-      `http://www.reddit.com/r/${subreddit}.json?limit=${postsToLoad}`)
-      .then(response => response.json())
-      .then(json => {
-        const postsToStore = json.data.children.map(post => post.data);
-        dispatch(fetchPostsSuccess(postsToStore));
-      })
-      .catch(error => dispatch(fetchPostsFail(error)));
-  };
+export const fetchPosts = queryInfo => dispatch => {
+  dispatch(fetchPostsBegin());
+  const { subreddit, postsToLoad } = queryInfo;
+  return fetch(`http://www.reddit.com/r/${subreddit}.json?limit=${postsToLoad}`)
+    .then(response => response.json())
+    .then(json => {
+      const postsToStore = json.data.children.map(post => post.data);
+      dispatch(fetchPostsSuccess(postsToStore));
+    })
+    .catch(error => dispatch(fetchPostsFail(error)));
 };
 export const fetchPostsBegin = () => {
   return {
@@ -49,4 +46,3 @@ export const savePostsToLoad = num => {
     payload: num
   };
 };
-

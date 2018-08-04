@@ -8,7 +8,7 @@ import {
 
 } from "../actions/redditActions";
 
-class Settings extends Component {
+class Redditsettings extends Component {
   state = {
     subreddit: this.props.subreddit,
     postsToLoad: this.props.postsToLoad,
@@ -63,7 +63,7 @@ class Settings extends Component {
   }
 }
 
-Settings.propTypes = {
+Redditsettings.propTypes = {
   subreddit: PropTypes.string,
   postsToLoad: PropTypes.number,
   postsToShow:  PropTypes.number,
@@ -82,4 +82,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Settings);
+)(Redditsettings);

@@ -55,13 +55,13 @@ class Posts extends Component {
           {postsItems.map(item => (
             <Card
               key={item.key}
-              cover={<img alt="example" src={item.image} />}
+              cover={<img alt="image" src={item.image} />}
               actions={[
                 <div>
                   <Button
                     type="primary"
                     onClick={() => {
-                      this.handleSavePost(item);
+                      this.handleSavePost(item); //TODO сделать проверку на повторы в очереди
                     }}
                   >
                     Add to queue

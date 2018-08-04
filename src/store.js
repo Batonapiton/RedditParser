@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import { save, load } from "redux-localstorage-simple";
 
-const middleware = [thunk,save()];
+const middleware = [thunk, save()];
 
 const initialState = load();
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deletePostFromStorage } from "../actions/postsStorageActions";
 
-import { Card, Button } from "antd";
+import { Card, Button, Input } from "antd";
 const { Meta } = Card;
 
 class Queue extends Component {
@@ -34,7 +34,7 @@ class Queue extends Component {
               className="card"
             >
               <Meta
-                title={<a href={item.extra}>{item.header}</a>}
+                title={<Input value={item.header}/>} //TODO сделать изменяемый заголовок
                 description={[
                   <a href={item.permalink}>Link to post</a>,
                   <div>Author: {item.author}</div>
