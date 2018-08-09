@@ -1,3 +1,7 @@
-#vkwidget2{
-    display: none;
+#vkwidget2 {
+  display: none;
+}
+.clubSelector {
+
+  width: 100%;
 }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import { Layout } from "antd";
 import Redditsettings from "./redditsettings";
 import Vkside from "./vkside";
@@ -17,6 +16,5 @@ class Sidebar extends Component {
   }
 }
 
-Sidebar.propTypes = {};
 
 export default Sidebar;

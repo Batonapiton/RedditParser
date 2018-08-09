@@ -55,7 +55,7 @@ class Posts extends Component {
           {postsItems.map(item => (
             <Card
               key={item.key}
-              cover={<img alt="image" src={item.image} />}
+              cover={<img alt={item.header} src={item.image} />}
               actions={[
                 <div>
                   <Button
